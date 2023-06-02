@@ -1,0 +1,18 @@
+<!doctype html>
+<html>
+<head>
+<title>{{ title }}</title>
+</head>
+<body bgcolor="#000044", text="#FFFFFF">
+<h1>{{ title }}</h1>
+
+<form action="/new_thread" method="post">
+    title:<input type="text", name="thread_title", size="70" required><br>
+    poster's name:<input type="text", name="posters_name", size="70"><br>
+    content:<br>
+    <textarea name="content", cols="80", rows="20" required></textarea><br>
+    <input type="submit" value="POST NEW THREAD">
+</form>
+<a href="/"><h3><font color="#FFFF00">Back to top</font> </h3> </a>
+</body>
+</html>

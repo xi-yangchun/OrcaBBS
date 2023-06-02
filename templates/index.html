@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+<head>
+<title>{{ title }}</title>
+</head>
+<body bgcolor="#000044", text="#FFFFFF">
+<h1>{{ bbsname }}</h1>
+<h2>{{ listname }}</h2>
+<table border="1" width="50%" style="table-layout: fixed;">
+    <tr>
+    <th bgcolor="#000044"><font color="#FFFFFF">タイトル</font></th>
+    <th bgcolor="#000044"><font color="#FFFFFF">レス数</font></th>
+    <th bgcolor="#000044"><font color="#FFFFFF">作成日時</font></th>
+    </tr>
+
+    {% for thread in threads %}
+    <tr>
+        <td bgcolor="#000044"><font color="#FFFFFF"><a href="threads/{{ thread.tid }}">
+        <font color="#FFFF00">{{ thread.name }}</font></a></font></td>
+        <td bgcolor="#000044"><font color="#FFFFFF">{{ thread.num_posts }}</font></td>
+        <td bgcolor="#000044"><font color="#FFFFFF">000000</font></td>
+    </tr>
+    {% endfor %}
+</table>
+<a href="/new_thread"><h3><font color="#FFFF00">Post new thread</font> </h3> </a>
+
+</body>
+</html>

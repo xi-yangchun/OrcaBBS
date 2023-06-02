@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+<head>
+<title>{{ title }}</title>
+</head>
+<body bgcolor="#000044", text="#FFFFFF">
+{% block content %}
+<!--Post生成-->
+{% endblock %}
+
+<h3><a href="#postform"><font color="#FFFF00">To post form
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><a>
+<a href="#latest"><font color="#FFFF00">See latest post
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><a>
+<a href="/"><font color="#FFFF00">Back to top</font><a></h3>
+<h1>{{ title }}</h1>
+{% for post in posts %}
+<div style="padding-top: 3px;padding-bottom: 10px; margin-bottom: 7px; margin-top: 7px;
+border: 2px double #FFFFFF; line-height: 4px;background-color: #000044;
+color: #FFFFFF;">
+    <div style="padding-top: -10px;padding-bottom: 13px; margin-bottom: 3px; margin-top: 10px;
+    border: 1px solid #FFFFFF; line-height: 4px;background-color: #000044;
+    color: #FFFFFF;">
+    <p>  <a name="{{ post.num }}"> <font color="#FFFF00"> {{ post.num }} </font> </a> 
+        id:{{ post.uid }}, name:{{ post.name }}, time:{{ post.time }} </p>    
+    to: {% for to in post.anchor_to %}
+    <a href="#{{ to }}"><font color="#FFFF00">>>{{ to }}</font></a>
+    {% endfor %}
+    </div>
+    {{ post.content }}
+</div> 
+{% endfor %}
+<a name="latest"></a>
+<h3> <a name="postform",size="80"> <font color="#FFFF00">POST</font></a> </h3>
+<form action="/threads/{{ tid }}#latest" method="post">
+    name:<input type="text", name="name",size="80"><br>
+    content:<br>
+    <textarea name="content", cols="80", rows="20" required></textarea><br>
+    <input type="submit" value="POST">
+</form>
+<a href="#1"><h3><font color="#FFFF00">To the 1st post</font> </h3> </a>
+<h3><a href="/"><font color="#FFFF00">Back to top</font><a></h3>
+</body>
+</html>
