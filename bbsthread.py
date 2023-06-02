@@ -43,6 +43,17 @@ class Thread:
         d=self.get_dict()
         with open("threads/{}.json".format(self.tid),"w") as j:
             json.dump(d,j,indent=4)
+    def from_dict(self,dct):
+        self.name=dct["thread_title"]
+        self.tid=dct["thread_id"]
+        self.uid=dct["uid"]
+        self.poster=dct["poster"]
+        self.time=dct["time"]
+        self.num_posts=int(dct["num_posts"])
+        self.posts=[]
+        for i in range(self.num_posts):
+            self.posts.append(Post(0,0,0,0).from_dict(dct["posts"][i]))
+        return self
 
 class Post:
     def __init__(self,uid,name,time,content):
@@ -66,3 +77,14 @@ class Post:
             "anchor_from":[afr for afr in self.anchor_from]
         }
         return d
+    def from_dict(self,dct):
+        self.num=int(dct["num"])
+        self.uid=dct["uid"]
+        self.name=dct["name"]
+        self.time=dct["time"]
+        self.content=dct["content"]
+        self.anchor_to=[int(dct["anchor_to"][i]) 
+                        for i in range(len(dct["anchor_to"]))]
+        self.anchor_from=[int(dct["anchor_from"][i]) 
+                        for i in range(len(dct["anchor_from"]))]
+        return self

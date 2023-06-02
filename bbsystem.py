@@ -1,6 +1,7 @@
 import random
 import bbsthread
 import json
+import os
 class BBS:
     def __init__(self):
         self.list_threads=[]
@@ -20,28 +21,10 @@ class BBS:
     def save_thread(self,th:bbsthread.Thread):
         with open("threads/{}.json".format(th.tid),"w") as j:
             json.dump(th.get_dict(),j)
-    def make_top_page(self):
-        f=""
-        for thread in self.list_threads:
-            f=f+'''
-<tr>
-    <td bgcolor="#000044"><font color="#FFFFFF"><a href="threads/{}">
-    <font color="#FFFF00">{}</font></a></font></td>
-    <td bgcolor="#000044"><font color="#FFFFFF">{}</font></td>
-    <td bgcolor="#000044"><font color="#FFFFFF">{}</font></td>
-</tr>
-            '''.format(thread.tid,thread.name,len(thread.posts),"0000/00/00 00:00")
-
-        s=r'''
-{% extends "index_pre.html" %}
-{% block content %}
-<table border="1" width="50%" style="table-layout: fixed;">
-<tr>
-<th bgcolor="#000044"><font color="#FFFFFF">タイトル</font></th>
-<th bgcolor="#000044"><font color="#FFFFFF">レス数</font></th>
-<th bgcolor="#000044"><font color="#FFFFFF">作成日時</font></th>
-</tr>'''+f+r'''
-</table>
-{% endblock %}'''
-        with open("templates/index.html","w") as o:
-            o.write(s)        
+    def load_threads(self):
+        tids=[jn.replace(".json","") for jn in os.listdir("threads")]
+        for tid in tids:
+            with open("threads/{}.json".format(tid),"r") as f:
+                dct=json.load(f)
+            th=bbsthread.Thread("unknown").from_dict(dct)
+            self.add_threads(th,tid)

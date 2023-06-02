@@ -8,6 +8,7 @@ app = Flask(__name__)
 
 global bbs
 bbs=bbsystem.BBS()
+bbs.load_threads()
 #bbs.make_top_page()
 
 @app.route('/')
