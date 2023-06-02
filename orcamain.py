@@ -19,6 +19,10 @@ def bbstop():
                            listname="List of thread",
                            threads=bbs.list_threads)
 
+@app.route('/localrules')
+def localrules():
+    return render_template('localrules.html')
+
 @app.route('/threads/<tid>',methods=["GET","POST"])
 def threadpage(tid):
     if request.method=="POST":
