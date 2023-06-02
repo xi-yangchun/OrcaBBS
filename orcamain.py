@@ -24,6 +24,7 @@ def threadpage(tid):
     if request.method=="POST":
         name=request.form['name']
         content=request.form['content']
+        print(content)
         DIFF_JST_FROM_UTC = 9
         log_time=(datetime.datetime.utcnow())\
         +datetime.timedelta(hours=DIFF_JST_FROM_UTC)
