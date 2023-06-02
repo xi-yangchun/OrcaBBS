@@ -1,0 +1,21 @@
+{
+    "thread_title": "<Threads can be seen on the toppage.>",
+    "thread_id": "3104801012510710907",
+    "uid": "fake_uid",
+    "poster": "name can be put here.",
+    "time": "2023-06-02 22:13:30.444011",
+    "num_posts": 1,
+    "posts": [
+        {
+            "num": "1",
+            "uid": "fake_uid",
+            "name": "name can be put here.",
+            "time": "2023-06-02 22:13:30.444011",
+            "content": [
+                "have fun"
+            ],
+            "anchor_to": [],
+            "anchor_from": []
+        }
+    ]
+}
