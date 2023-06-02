@@ -19,11 +19,15 @@ class Thread:
         self.num_posts+=1
         ps.num=str(len(self.posts))
         doma=['>>{}'.format(1000-i) for i in range(1000)]
+        contl='\n'.join(ps.content)
         for i in range(1000):
-            if doma[i] in ps.content:
-                ps.content=ps.content.replace(doma[i],'>>0000'+str(1000-i))
+            if doma[i] in contl:
+                contl=contl.replace(doma[i],'>>0000'+str(1000-i))
                 ps.add_anchor_to(1000-i)
-        ps.content=ps.content.replace('>>0000','>>')
+                if len(self.posts)>=1000-i:
+                    self.posts[1000-i-1].add_anchor_from(ps.num)
+        contl=contl.replace('>>0000','>>')
+        self.content=contl.split('\n')
     def reg_tid(self,tid):
         self.tid=tid
     def get_dict(self):
@@ -52,7 +56,7 @@ class Thread:
         self.num_posts=int(dct["num_posts"])
         self.posts=[]
         for i in range(self.num_posts):
-            self.posts.append(Post(0,0,0,0).from_dict(dct["posts"][i]))
+            self.posts.append(Post(0,0,0,"").from_dict(dct["posts"][i]))
         return self
 
 class Post:
@@ -61,11 +65,13 @@ class Post:
         self.uid=uid
         self.name=name
         self.time=time
-        self.content=content
+        self.content=content.split("\n")
         self.anchor_to=[]
         self.anchor_from=[]
     def add_anchor_to(self,number):
         self.anchor_to.append(number)
+    def add_anchor_from(self,number):
+        self.anchor_from.append(number)
     def get_dict(self):
         d={
             "num":self.num,
