@@ -3,6 +3,7 @@ from bbsthread import Thread as bbst
 from bbsthread import Post as bbpos
 import bbsystem
 import datetime
+from threading import Thread
 
 app = Flask(__name__)
 
@@ -59,6 +60,12 @@ def new_thread():
         return redirect(url_for('bbstop'))
     return render_template('new_thread.html', title='Post new thread')
 
+def keep_alive():
+    t = Thread(target=run)
+    t.start()
+
 ## おまじない
-if __name__ == "__main__":
-    app.run(debug=False)
+def run():
+    app.run(debug=False,host='orcabbs.haruki1.repl.co',port=8080)
+
+keep_alive()
