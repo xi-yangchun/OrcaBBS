@@ -59,12 +59,13 @@ def new_thread():
         th.save()
         return redirect(url_for('bbstop'))
     return render_template('new_thread.html', title='Post new thread')
+
+
 def keep_alive():
     t = Thread(target=run)
     t.start()
-
 ## おまじない
 def run():
-    app.run(debug=False,host='0.0.0.0',port=8080)
+    app.run(debug=False,host='orcabbs.haruki1.repl.co',port=8080)
 
 keep_alive()
