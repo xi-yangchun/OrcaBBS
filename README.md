@@ -1,6 +1,8 @@
 # OrcaBBS: Opensource BBS script for the freedom of speech
 ## What is this?
 Orca is a bbs script, which aims to promote the freedom of speech.
+
+access:https://orcabbs.haruki1.repl.co/
 ## Usage
 host your server by:
 `python orcamain.py`
